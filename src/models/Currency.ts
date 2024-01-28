@@ -1,4 +1,5 @@
-export interface Currency {
+export interface CurrencyDTO {
+  [key: string]: {
     code: string;
     codein: string;
     name: string;
@@ -10,4 +11,19 @@ export interface Currency {
     ask: number;
     timestamp: string;
     create_date: Date;
+  };
+}
+
+export interface Currency {
+  code: string;
+  name: string;
+  valueInBRL: number;
+  variationPercentage: number;
+  lastUpdate: Date;
+}
+
+export interface CurrencyCard {
+  isError: boolean;
+  isLoading: boolean;
+  currency: Currency;
 }

@@ -1,1 +1,31 @@
-<p>currency-card works!</p>
+<ng-container *ngIf="currency; else loading">
+    <div class="card">
+        <div class="card__header">
+            <span class="card__header__title">{{ currency.name }}</span>
+        </div>
+
+        <div class="card__content">
+            <span class="card__content__value">{{ currency.valueInBRL }}</span>
+        </div>
+
+        <div class="card__footer">
+            <div class="card__footer__item">
+                <span class="card__footer__item__title">Variação (%)</span>
+                <span class="card__footer__item__value">{{ currency.variationPercentage }}</span>
+            </div>
+
+            <div class="card__footer__item">
+                <span class="card__footer__item__title">Atualizado</span>
+                <span class="card__footer__item__value">{{ currency.lastUpdate }}</span>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <div class="card">
+        <div class="loading">
+            <img src="assets/loading.svg" alt="loading spinner">
+        </div>
+    </div>
+</ng-template>

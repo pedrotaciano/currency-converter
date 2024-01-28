@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CurrencyConverterComponent } from './currency-converter.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('CurrencyConverterComponent', () => {
   let component: CurrencyConverterComponent;
@@ -8,7 +8,7 @@ describe('CurrencyConverterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CurrencyConverterComponent]
+      imports: [CurrencyConverterComponent, HttpClientModule]
     })
     .compileComponents();
     
@@ -19,5 +19,23 @@ describe('CurrencyConverterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return a list of currencies', async () => {
+    const currencies = await component.getAllCurrencies();
+    expect(currencies.length).toBeGreaterThan(0);
+  });
+
+  it('should update currencies every 3 minutes', () => {
+    const updateInterval = 180000;
+    const totalTestTime = updateInterval * 2;
+    const spy = spyOn(component, 'getAllCurrencies');
+
+    component.scheduleCurrenciesUpdate();
+
+    expect(spy).not.toHaveBeenCalled();
+    setInterval(() => {
+      expect(spy).toHaveBeenCalledTimes(2);
+    }, totalTestTime);
   });
 });
