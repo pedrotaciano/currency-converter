@@ -19,7 +19,7 @@ export interface Currency {
   name: string;
   valueInBRL: number;
   variationPercentage: number;
-  lastUpdate: Date;
+  lastUpdate: number;
 }
 
 export interface CurrencyCard {

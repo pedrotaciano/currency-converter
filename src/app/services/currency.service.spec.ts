@@ -23,4 +23,13 @@ describe('CurrencyService', () => {
     const currencies = await firstValueFrom(service.getAllCurrencies());
     expect(currencies.length).toBeGreaterThan(0);
   });
+
+  it('should return a list of currencies with the correct properties', async () => {
+    const currencies = await firstValueFrom(service.getAllCurrencies());
+    expect(currencies[0].code).toBeDefined();
+    expect(currencies[0].name).toBeDefined();
+    expect(currencies[0].valueInBRL).toBeDefined();
+    expect(currencies[0].variationPercentage).toBeDefined();
+    expect(currencies[0].lastUpdate).toBeDefined();
+  });
 });

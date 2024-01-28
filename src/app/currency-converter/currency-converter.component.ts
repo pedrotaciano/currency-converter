@@ -5,9 +5,6 @@ import { CurrencyService } from '../services/currency.service';
 import {
   Subject,
   firstValueFrom,
-  interval,
-  switchMap,
-  takeUntil,
 } from 'rxjs';
 
 @Component({

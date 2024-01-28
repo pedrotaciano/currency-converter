@@ -1,8 +1,19 @@
 .container {
     width: 100%;
-    height: calc(100vh - var(--header-height));
-
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 8.53% 0;
+
+    .cards {
+        display: flex;
+        gap: 9rem;
+        align-content: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        
+        @media screen and (max-width: 768px) {
+            gap: 4rem;
+        }
+    }
 }

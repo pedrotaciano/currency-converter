@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Currency, CurrencyDTO } from '../../models/Currency';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs';
+import { EMPTY, Observable, catchError, map } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -10,13 +10,15 @@ import { environment } from '../../environments/environment';
 export class CurrencyService {
   constructor(private http: HttpClient) {}
 
-  getAllCurrencies() {
+  getAllCurrencies(): Observable<Currency[]> {
     return this.http
-      .get<CurrencyDTO>(`${environment.apiUrl}/CAD-BRL,ARS-BRL,GBP-BRL`)
+      .get<CurrencyDTO>(`${environment.apiUrl}/CAD-BRL,ARS-BRL,GBP-BR9`)
       .pipe(
-        map((currencies: CurrencyDTO) => this.transformCurrenciesObjToArray(currencies)),
+        map((currencies: CurrencyDTO) =>
+          this.transformCurrenciesObjToArray(currencies)
+        ),
         catchError((error: any) => {
-          throw error;
+          return EMPTY;
         })
       );
   }
@@ -25,10 +27,10 @@ export class CurrencyService {
     return Object.keys(currencies).map((key) => {
       return {
         code: key,
-        name: currencies[key].name,
+        name: currencies[key].name.split('/')[0],
         valueInBRL: currencies[key].bid,
         variationPercentage: currencies[key].pctChange,
-        lastUpdate: new Date(currencies[key].timestamp),
+        lastUpdate: Number(currencies[key].timestamp),
       };
     });
   }
