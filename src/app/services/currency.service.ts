@@ -12,7 +12,7 @@ export class CurrencyService {
 
   getAllCurrencies(): Observable<Currency[]> {
     return this.http
-      .get<CurrencyDTO>(`${environment.apiUrl}/CAD-BRL,ARS-BRL,GBP-BR9`)
+      .get<CurrencyDTO>(`${environment.apiUrl}/CAD-BRL,ARS-BRL,GBP-BRL`)
       .pipe(
         map((currencies: CurrencyDTO) =>
           this.transformCurrenciesObjToArray(currencies)
