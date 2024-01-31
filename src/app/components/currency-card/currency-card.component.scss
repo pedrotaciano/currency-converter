@@ -72,4 +72,35 @@
             }
         }
     }
+
+    .error {
+        flex-direction: column;
+        gap: 2rem;
+        height: 100%;
+        
+        &__message {
+            color: var(--text-basic);
+            font-size: 2.6rem;
+            font-weight: 400;
+        }
+
+        button {
+            color: var(--text-basic);
+            font-size: 1.8rem;
+            font-weight: 600;
+            padding: 1.6rem 3.2rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+        }
+    }
+
+    .loading {
+        height: 100%;
+
+        img {
+            width: 10rem;
+            aspect-ratio: 1/1;
+        }
+    }
 }

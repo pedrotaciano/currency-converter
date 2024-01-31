@@ -1,9 +1,13 @@
 <div class="container">
     <div class="cards">
         @for (currency of currencies; track currency.code) {
-            <app-currency-card [currency]="currency"></app-currency-card>
+            <app-currency-card [currency]="currency" (reload)="getAllCurrencies()"></app-currency-card>
         } @empty {
-            <p>No currencies found</p>
+            @if (isError) {
+                <app-currency-card [isError]="isError"></app-currency-card>
+            } @else {
+                <app-currency-card></app-currency-card>
+            }
         }
     </div>
 </div>

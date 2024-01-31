@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Currency } from '../../../models/Currency';
 import { CommonModule } from '@angular/common';
 
@@ -10,5 +10,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './currency-card.component.scss'
 })
 export class CurrencyCardComponent {
-  @Input() currency!: Currency;
+  @Input() currency!: Currency
+  @Input() isError = false;
+  @Output() reload = new EventEmitter<void>();
+
+  reloadCurrencies(): void {
+    this.reload.emit();
+  }
 }

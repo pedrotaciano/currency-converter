@@ -17,6 +17,7 @@ import {
 export class CurrencyConverterComponent {
   currencies: Currency[] = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
+  isError = false;
 
   constructor(private currencyService: CurrencyService) {}
 
@@ -25,8 +26,11 @@ export class CurrencyConverterComponent {
     this.scheduleCurrenciesUpdate();
   }
 
-  async getAllCurrencies(): Promise<Currency[]>{
-    return await firstValueFrom(this.currencyService.getAllCurrencies());
+  async getAllCurrencies(): Promise<Currency[]> {
+    return await firstValueFrom(this.currencyService.getAllCurrencies()).catch(() => {
+      this.isError = true;
+      return [];
+    });
   }
 
   scheduleCurrenciesUpdate(): void {

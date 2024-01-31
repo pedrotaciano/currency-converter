@@ -17,8 +17,8 @@ export class CurrencyService {
         map((currencies: CurrencyDTO) =>
           this.transformCurrenciesObjToArray(currencies)
         ),
-        catchError((error: any) => {
-          return EMPTY;
+        catchError(() => {
+          throw new Error('Error fetching currencies');
         })
       );
   }
