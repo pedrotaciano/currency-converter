@@ -21,9 +21,3 @@ export interface Currency {
   variationPercentage: number;
   lastUpdate: number;
 }
-
-export interface CurrencyCard {
-  isError: boolean;
-  isLoading: boolean;
-  currency: Currency;
-}
