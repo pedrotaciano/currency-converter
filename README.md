@@ -28,8 +28,8 @@ docker build -t currency-converter .
 Uma vez que a imagem Docker foi construída, podemos rodá-la com o seguinte comando:
 
 ```bash
-docker run -p 8080:80 currency-converter .
+docker run -p 4201:4200 currency-converter
 ```
 
 ## Acessando a a aplicação
-Abra seu navegador e vá ao endereço http://localhost:8080 e acesse a aplicação Angular rodando dentro do container Docker.
+Abra seu navegador e vá ao endereço http://localhost:4201 e acesse a aplicação Angular rodando dentro do container Docker.
