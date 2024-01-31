@@ -10,6 +10,7 @@ Este repositório contém uma aplicação de conversão de moedas para Real Bras
 - Construção da Imagem Docker
 - Execução do Container Docker
 - Acessando a Aplicação Angular
+- Rodando testes unitários
 
 ## Pré-requisitos
 
@@ -33,3 +34,10 @@ docker run -p 4201:4200 currency-converter
 
 ## Acessando a a aplicação
 Abra seu navegador e vá ao endereço http://localhost:4201 e acesse a aplicação Angular rodando dentro do container Docker.
+
+## Rodando testes unitários
+Para rodar os testes unitários, abra um terminal e navegue até a raiz do projeto e execute o seguinte comando:
+
+```bash
+ng test
+```
