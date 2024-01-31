@@ -28,14 +28,20 @@ describe('CurrencyConverterComponent', () => {
 
   it('should update currencies every 3 minutes', () => {
     const updateInterval = 180000;
-    const totalTestTime = updateInterval * 2;
+    const callCount = 2;
+    const totalTestTime = updateInterval * callCount;
     const spy = spyOn(component, 'getAllCurrencies');
 
     component.scheduleCurrenciesUpdate();
 
     expect(spy).not.toHaveBeenCalled();
     setInterval(() => {
-      expect(spy).toHaveBeenCalledTimes(2);
+      expect(spy).toHaveBeenCalledTimes(callCount);
     }, totalTestTime);
+  });
+
+  it('should create a card for each currency', () => {
+    const cards = fixture.nativeElement.querySelectorAll('app-currency-card');
+    expect(cards.length).toEqual(component.currencies.length);
   });
 });
